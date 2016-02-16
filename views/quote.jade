@@ -3,10 +3,20 @@ extends layout
 block content
   h1= title
 
-  form
+  ul.errors
+    if errors
+      each error, i in errors
+        li.alert.alert-danger Error: #{error}
+
+  form(method='POST', action="/quote")
     .form-group
       label Symbol
-      input(type="text", placeholder='Enter Symbol')
+      input(type="text", name='symbolSearch', placeholder='Enter Symbol')
     button(type="submit" class="btn btn-default") Get Details
 
+  if results
+    ul Click for more details:
+      each result, i in results
+        li
+          a(href="") #{result.Symbol} #{result.Name}
 

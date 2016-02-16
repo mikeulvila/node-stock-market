@@ -1,9 +1,16 @@
-var express = require('express');
-var router = express.Router();
+'use strict'
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Rock The Stock you...' });
-});
+const express = require('express');
+const router = express.Router();
+
+// require routes
+const home = require('./home');
+const portfolio = require('./portfolio');
+const quote = require('./quote');
+
+// use routes
+router.use(home);
+router.use(portfolio);
+router.use(quote);
 
 module.exports = router;

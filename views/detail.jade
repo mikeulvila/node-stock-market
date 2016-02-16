@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+
+  table.table.tab-content
+    tr
+      th Name:
+      td #{result.Name}
+    tr
+      th Symbol:
+      td #{result.Symbol}
+    tr
+      th Last Price:
+      td $#{result.LastPrice}
+

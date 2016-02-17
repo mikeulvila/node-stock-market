@@ -2,7 +2,7 @@
 const request = require('request');
 
 // model
-const Portfolio = require('../models/portfolio.js');
+const Stock = require('../models/stock.js');
 
 // variables
 const url = 'http://dev.markitondemand.com/Api/v2/Quote/json?symbol=';
@@ -19,9 +19,12 @@ module.exports.index = (req, res) => {
         errors: err
       })
     } else {
+      const result = JSON.parse(response.body);
       res.render('detail', {
-        title: 'Detail',
-        result: JSON.parse(response.body)
+        title: `${result.Symbol} Details`,
+        name: result.Name,
+        symbol: result.Symbol,
+        price: result.LastPrice
       })
     }
   });
@@ -36,25 +39,26 @@ module.exports.buyStock = (req, res) => {
   request.get(stockQuoteAPI, (err, response) => {
     if (err) throw err;
     const result = JSON.parse(response.body);
-    const stock = new Portfolio();
-    stock.symbol = result.Symbol;
+    //create new Stock Schema
+    const stock = new Stock();
     stock.name = result.Name;
     stock.price = result.LastPrice;
     stock.qty = buyQty;
+    stock.symbol = result.Symbol;
     //ADD STOCK TO MONGO DATABASE
-    Portfolio.addStock(stock, (err, stockdb) => {
+    Stock.addStock(stock, (err, stockdb) => {
+      console.log('SAVED', stockdb);
       if (err) throw err;
-      console.log('STOCK FROM DB: ', stockdb);
       res.render('detail', {
-        title: 'Sucessful buy',
-        result: result
+        title: `Your ${stockdb.symbol} Stock Details`,
+        name: stockdb.name,
+        symbol: stockdb.symbol,
+        price: stockdb.price,
+        quantity: stockdb.qty,
+        id: stockdb._id
       });
-
     });
-
-
   });
-
 };
 
 

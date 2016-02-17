@@ -13,7 +13,4 @@ router.get('/detail/:symbol', ctrl.index);
 // POST to portfolio
 router.post('/detail/buy/:symbol', ctrl.buyStock);
 
-
-
-
 module.exports = router;

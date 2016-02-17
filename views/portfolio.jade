@@ -10,8 +10,11 @@ block content
       th Company
       th Price
       th Qty.
-    tr
-      td AAPL
-      td Apple
-      td $15.00
-      td 50
+    each stock, i in stocks
+      tr
+        td #{stock.symbol}
+        td #{stock.name}
+        td #{stock.price}
+        td #{stock.qty}
+        td
+          a(href="/detail/id/#{stock._id}") Buy | Sell

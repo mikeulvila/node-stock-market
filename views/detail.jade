@@ -6,23 +6,32 @@ block content
   table.table.tab-content
     tr
       th Name:
-      td #{result.Name}
+      td #{name}
     tr
       th Symbol:
-      td #{result.Symbol}
+      td #{symbol}
     tr
       th Last Price:
-      td $#{result.LastPrice}
+      td $#{price}
 
-  form(method='POST', action="/detail/buy/#{result.Symbol}")
-    .form-group
-      label Qty:
-      input(type="number", name='buyQty', placeholder='Enter quantity to buy.')
-      button(type="submit" class="btn btn-default") Buy
+  if id
+    form(method='POST', action="/detail/buy/#{id}")
+      .form-group
+        label Qty:
+        input(type="number", name='buyQty', placeholder='Enter quantity to buy.')
+        button(type="submit" class="btn btn-default") Buy
 
-  form(method='POST', action="/sell/#{result.Symbol}")
-    .form-group
-      label Qty:
-      input(type="number", name='sellQty', placeholder='Enter quantity to sell.')
-      button(type="submit" class="btn btn-default") Sell
+    form(method='POST', action="/sell/#{id}")
+      .form-group
+        label Qty:
+        input(type="number", name='sellQty', placeholder='Enter quantity to sell.')
+        button(type="submit" class="btn btn-default") Sell
 
+    .bg-success You own #{quantity} shares of #{name} stock.
+
+  else
+    form(method='POST', action="/detail/buy/#{symbol}")
+      .form-group
+        label Qty:
+        input(type="number", name='buyQty', placeholder='Enter quantity to buy.')
+        button(type="submit" class="btn btn-default") Buy

@@ -24,3 +24,9 @@ module.exports.addStock = (stock, callback) => {
 module.exports.getStocks = function (query, callback) {
   Stock.find(query, callback).sort({symbol: 1});
 };
+
+// Get stock by id
+module.exports.getStockById = (id, callback) => {
+  // mongoose method .findById
+  Stock.findById(id, callback);
+};

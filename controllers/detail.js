@@ -30,6 +30,22 @@ module.exports.index = (req, res) => {
   });
 };
 
+// GET STOCK DETAIL FROM DATABASE BY ID AND RENDER DETAIL.JADE
+module.exports.getStock = (req, res) => {
+  Stock.getStockById(req.params.id, function (err, stock) {
+    if (err) throw err;
+
+    res.render('detail', {
+      title: `Your ${stock.symbol} Stock Details`,
+      name: stock.name,
+      symbol: stock.symbol,
+      price: stock.price,
+      quantity: stock.qty,
+      id: stock._id
+    });
+  });
+};
+
 // BUY STOCK
 module.exports.buyStock = (req, res) => {
   const buyQty = req.body.buyQty;

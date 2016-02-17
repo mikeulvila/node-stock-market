@@ -2,9 +2,12 @@
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
-router.get('/portfolio', function(req, res, next) {
-  res.render('portfolio', { title: 'You are now on the portfolio page.' });
-});
+// model
+
+// controller
+const ctrl = require('../controllers/portfolio.js');
+
+/* GET portfolio page. */
+router.get('/portfolio', ctrl.index);
 
 module.exports = router;

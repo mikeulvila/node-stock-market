@@ -7,8 +7,12 @@ const router = express.Router();
 // controller
 const ctrl = require('../controllers/detail.js');
 
-/* GET detail page. */
+// GET detail page.
 router.get('/detail/:symbol', ctrl.index);
+
+// POST to portfolio
+router.post('/detail/buy/:symbol', ctrl.buyStock);
+
 
 
 

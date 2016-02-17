@@ -1,13 +1,18 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+// routes
+const routes = require('./routes/index');
 
-var routes = require('./routes/index');
+const app = express();
 
-var app = express();
+// Mongoose create the database connection
+mongoose.connect('mongodb://localhost/node-stock-market');
+const db = mongoose.connection;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

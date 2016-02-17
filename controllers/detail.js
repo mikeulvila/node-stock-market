@@ -103,6 +103,31 @@ module.exports.buyMoreStock = (req, res) => {
   });
 };
 
+// SELL STOCK
+module.exports.sellStock = (req, res) => {
+  const sellQty = req.body.sellQty;
+  const id = req.params.id;
+  let newQty = 0;
+
+  Stock.getStockById(id, (err, stock) => {
+    if (err) throw err;
+    // add buy quantity to existing quantity
+    newQty = parseInt(stock.qty) - parseInt(sellQty);
+
+      Stock.updateStock({_id: id}, {qty: newQty}, {new: true}, (err, stock) => {
+        if (err) throw err;
+
+        res.render('detail', {
+          title: `Your ${stock.symbol} Stock Details`,
+          name: stock.name,
+          symbol: stock.symbol,
+          price: stock.price,
+          quantity: stock.qty,
+          id: stock._id
+        });
+      });
+  });
+};
 
 
 

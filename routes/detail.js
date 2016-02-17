@@ -20,6 +20,6 @@ router.post('/detail/buy/:symbol', ctrl.buyStock);
 router.post('/detail/buymore/:id', ctrl.buyMoreStock);
 
 // UPDATE sell stock
-//router.post('/detail/sell/:id', ctrl.sellStock);
+router.post('/detail/sell/:id', ctrl.sellStock);
 
 module.exports = router;

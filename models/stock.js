@@ -14,7 +14,7 @@ const stockSchema = mongoose.Schema({
 
 const Stock = module.exports = mongoose.model('stocks', stockSchema);
 
-//add stock to stock database
+// add stock to stock database
 module.exports.addStock = (stock, callback) => {
   // mongoose method .create
   Stock.create(stock, callback);
@@ -29,4 +29,10 @@ module.exports.getStocks = function (query, callback) {
 module.exports.getStockById = (id, callback) => {
   // mongoose method .findById
   Stock.findById(id, callback);
+};
+
+// update quantity
+module.exports.updateStock = function (query, update, options, callback) {
+  // mongoose method .findOneAndUpdate
+  Stock.findOneAndUpdate(query, update, options, callback);
 };

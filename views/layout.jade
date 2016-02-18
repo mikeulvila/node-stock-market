@@ -7,7 +7,32 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css', type='text/css')
 
   body
+    include ./partials/_navbar.jade
     block content
+    hr
+    // Footer
+    footer
+      .container
+        .row
+          .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
+
+            ul.list-inline.text-center
+              li
+                a(href='https://twitter.com/mikeulvila')
+                  span.fa-stack.fa-lg
+                    i.fa.fa-circle.fa-stack-2x
+                    i.fa.fa-twitter.fa-stack-1x.fa-inverse
+              li
+                a(href='https://facebook.com/mikeulvila')
+                  span.fa-stack.fa-lg
+                    i.fa.fa-circle.fa-stack-2x
+                    i.fa.fa-facebook.fa-stack-1x.fa-inverse
+              li
+                a(href='https://github.com/mikeulvila/node-stock-market')
+                  span.fa-stack.fa-lg
+                    i.fa.fa-circle.fa-stack-2x
+                    i.fa.fa-github.fa-stack-1x.fa-inverse
+            p.copyright.text-muted.text-center Copyright © Rock the stock you...
 
     script(src='/vendor/jquery/dist/jquery.min.js')
     script(src='/vendor/bootstrap/dist/js/bootstrap.min.js')

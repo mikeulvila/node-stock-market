@@ -1,37 +1,40 @@
 extends layout
 
 block content
-  h1= title
+  .container
+    .row
+      .col-lg-12.col-md-12
+        h1= title
 
-  table.table.tab-content
-    tr
-      th Name:
-      td #{name}
-    tr
-      th Symbol:
-      td #{symbol}
-    tr
-      th Last Price:
-      td $#{price}
+        table.table.tab-content
+          tr
+            th Name:
+            td #{name}
+          tr
+            th Symbol:
+            td #{symbol}
+          tr
+            th Last Price:
+            td $#{price}
 
-  if id
-    form(method='POST', action="/detail/buymore/#{id}")
-      .form-group
-        label Qty:
-        input(type="number", name='buyQty', placeholder='Enter quantity to buy.')
-        button(type="submit" class="btn btn-default") Buy
+        if id
+          form(method='POST', action="/detail/buymore/#{id}")
+            .form-group
+              label Qty:
+              input(type="number", name='buyQty', placeholder='Enter quantity to buy.')
+              button.btn.btn-primary(type="submit" class="btn btn-default") Buy
 
-    form(method='POST', action="/detail/sell/#{id}")
-      .form-group
-        label Qty:
-        input(type="number", name='sellQty', placeholder='Enter quantity to sell.')
-        button(type="submit" class="btn btn-default") Sell
+          form(method='POST', action="/detail/sell/#{id}")
+            .form-group
+              label Qty:
+              input(type="number", name='sellQty', placeholder='Enter quantity to sell.')
+              button.btn.btn-primary(type="submit" class="btn btn-default") Sell
 
-    h3.bg-success You own #{quantity} shares of #{name} stock.
+          h3.bg-info You own #{quantity} shares of #{name} stock.
 
-  else
-    form(method='POST', action="/detail/buy/#{symbol}")
-      .form-group
-        label Qty:
-        input(type="number", name='buyQty', placeholder='Enter quantity to buy.')
-        button(type="submit" class="btn btn-default") Buy
+        else
+          form(method='POST', action="/detail/buy/#{symbol}")
+            .form-group
+              label Qty:
+              input(type="number", name='buyQty', placeholder='Enter quantity to buy.')
+              button.btn.btn-primary(type="submit" class="btn btn-default") Buy

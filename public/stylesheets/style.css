@@ -1,1 +1,8 @@
+.white-text {
+  color: white;
+}
 
+.banner-img {
+  background-image: url('../images/STOCK-MARKET-IMAGE.jpg');
+  height: 300px;
+}

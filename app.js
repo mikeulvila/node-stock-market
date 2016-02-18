@@ -11,7 +11,7 @@ const routes = require('./routes/index');
 const app = express();
 
 // Mongoose create the database connection
-mongoose.connect('mongodb://localhost/node-stock-market');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/node-stock-market');
 const db = mongoose.connection;
 
 // view engine setup
